@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "outDir": "./dist",
-    "target": "ES2016",
+    "target": "es5",                    // Especifica la versión de ECMAScript a la que se transpilará el código.
+    "module": "commonjs",
     "strict": true,
     "allowSyntheticDefaultImports": true,  
     "esModuleInterop": true,
