@@ -22,7 +22,7 @@ app.get("/", async (request: Request, response: Response) => {
         const clases = await getAllDataTable("clases");
         const colaboradores = await getAllDataTable("colaboradors");
         const departamentos = await getAllDataTable("departamentos");
-        const municipios = await getAllDataTable("departamentos");
+        const municipios = await getAllDataTable("municipios");
         const vuelo_colaboradores = await getAllDataTable("vuelo_colaboradors"); 
     
         const data = {
