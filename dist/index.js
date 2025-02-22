@@ -80,7 +80,7 @@ app.get("/", function (request, response) { return __awaiter(void 0, void 0, voi
                 return [4 /*yield*/, getAllDataTable("departamentos")];
             case 8:
                 departamentos = _a.sent();
-                return [4 /*yield*/, getAllDataTable("departamentos")];
+                return [4 /*yield*/, getAllDataTable("municipios")];
             case 9:
                 municipios = _a.sent();
                 return [4 /*yield*/, getAllDataTable("vuelo_colaboradors")];
