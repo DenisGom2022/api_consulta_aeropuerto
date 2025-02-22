@@ -42,75 +42,77 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var dotenv_1 = __importDefault(require("dotenv"));
 var coneccion_1 = require("./coneccion");
+var cors_1 = __importDefault(require("cors"));
 // configures dotenv to work in your application
 dotenv_1.default.config();
 var app = (0, express_1.default)();
 var PORT = process.env.PORT;
+app.use((0, cors_1.default)());
+app.use(express_1.default.json());
+app.use(express_1.default.urlencoded({ extended: true }));
 app.get("/", function (request, response) { return __awaiter(void 0, void 0, void 0, function () {
-    var aerolineas, aeropuertos, vuelos, pasajeros, data;
+    var aerolineas, aeropuertos, vuelos, pasajeros, beneficios, clases, colaboradores, departamentos, municipios, vuelo_colaboradores, data, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, getAllAerolineas()];
+            case 0:
+                _a.trys.push([0, 11, , 12]);
+                return [4 /*yield*/, getAllDataTable("aerolineas")];
             case 1:
                 aerolineas = _a.sent();
-                return [4 /*yield*/, getAllAeropuertos()];
+                return [4 /*yield*/, getAllDataTable("aeropuertos")];
             case 2:
                 aeropuertos = _a.sent();
-                return [4 /*yield*/, getAllVuelos()];
+                return [4 /*yield*/, getAllDataTable("vuelos")];
             case 3:
                 vuelos = _a.sent();
-                return [4 /*yield*/, getAllPasajeros()];
+                return [4 /*yield*/, getAllDataTable("pasajeros")];
             case 4:
                 pasajeros = _a.sent();
+                return [4 /*yield*/, getAllDataTable("beneficios")];
+            case 5:
+                beneficios = _a.sent();
+                return [4 /*yield*/, getAllDataTable("clases")];
+            case 6:
+                clases = _a.sent();
+                return [4 /*yield*/, getAllDataTable("colaboradors")];
+            case 7:
+                colaboradores = _a.sent();
+                return [4 /*yield*/, getAllDataTable("departamentos")];
+            case 8:
+                departamentos = _a.sent();
+                return [4 /*yield*/, getAllDataTable("departamentos")];
+            case 9:
+                municipios = _a.sent();
+                return [4 /*yield*/, getAllDataTable("vuelo_colaboradors")];
+            case 10:
+                vuelo_colaboradores = _a.sent();
                 data = {
                     aerolineas: aerolineas,
                     aeropuertos: aeropuertos,
                     vuelos: vuelos,
-                    pasajeros: pasajeros
+                    pasajeros: pasajeros,
+                    beneficios: beneficios,
+                    clases: clases,
+                    colaboradores: colaboradores,
+                    departamentos: departamentos,
+                    municipios: municipios,
+                    vuelo_colaboradores: vuelo_colaboradores
                 };
                 response.send(data);
-                return [2 /*return*/];
+                return [3 /*break*/, 12];
+            case 11:
+                error_1 = _a.sent();
+                response.status(500).send({ message: "error en api" });
+                return [3 /*break*/, 12];
+            case 12: return [2 /*return*/];
         }
     });
 }); });
-var getAllAerolineas = function () { return __awaiter(void 0, void 0, void 0, function () {
+var getAllDataTable = function (table) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, data, metadata;
     return __generator(this, function (_b) {
         switch (_b.label) {
-            case 0: return [4 /*yield*/, coneccion_1.pool.query("select * from aerolineas")];
-            case 1:
-                _a = _b.sent(), data = _a[0], metadata = _a[1];
-                return [2 /*return*/, data];
-        }
-    });
-}); };
-var getAllAeropuertos = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, data, metadata;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0: return [4 /*yield*/, coneccion_1.pool.query("select * from aeropuertos")];
-            case 1:
-                _a = _b.sent(), data = _a[0], metadata = _a[1];
-                return [2 /*return*/, data];
-        }
-    });
-}); };
-var getAllVuelos = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, data, metadata;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0: return [4 /*yield*/, coneccion_1.pool.query("select * from vuelos")];
-            case 1:
-                _a = _b.sent(), data = _a[0], metadata = _a[1];
-                return [2 /*return*/, data];
-        }
-    });
-}); };
-var getAllPasajeros = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, data, metadata;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0: return [4 /*yield*/, coneccion_1.pool.query("select * from pasajeros")];
+            case 0: return [4 /*yield*/, coneccion_1.pool.query("select * from " + table)];
             case 1:
                 _a = _b.sent(), data = _a[0], metadata = _a[1];
                 return [2 /*return*/, data];
